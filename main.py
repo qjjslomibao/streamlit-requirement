@@ -48,8 +48,16 @@ if uploaded_file is not None:
     if predictions is not None:
         # Display the classification results
         st.write("Prediction Results:")
-        for i, pred in enumerate(predictions[0]):
-            st.write(f"Class {i}: {pred * 100:.2f}% confidence")
+        
+        # Extracting class labels
+        class_labels = ["Sad", "Happy"]
+        
+        # Finding the predicted class
+        predicted_class_index = np.argmax(predictions[0])
+        predicted_class_label = class_labels[predicted_class_index]
+
+        # Display the result
+        st.write(f"The model predicts: {predicted_class_label} with confidence {predictions[0][predicted_class_index] * 100:.2f}%")
 
 # Link to open the app in Colab
 colab_link = "<a href=\"https://colab.research.google.com/github/qjjslomibao/streamlit-requirement/blob/main/final_requirement_streamlit.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
