@@ -49,7 +49,7 @@ st.markdown(
 
 # Text to display
 made_by_text = "This was made by:"
-submitted_to_text = "Submitted to Dr. Jonathan Taylor."
+submitted_to_text = "Submitted to Dr. Jonathan Taylar."
 
 # Display "This was made by:" with a blue background and white text
 st.markdown(f'<div class="highlight"><p class="big-font white-text">{made_by_text}</p></div>', unsafe_allow_html=True)
@@ -61,7 +61,7 @@ names = ["Lomibao, Justin Joshua", "Genabe, John Richmond", "Carl Voltair", "Lan
 for name in names:
     st.markdown(f'<p class="big-font white-text">{name}</p>', unsafe_allow_html=True)
 
-# Display "Submitted to Dr. Jonathan Taylor." with a blue background and white text
+# Display "Submitted to Dr. Jonathan Taylar." with a blue background and white text
 st.markdown(f'<p class="big-font white-text">{submitted_to_text}</p>', unsafe_allow_html=True)
 
 # File uploader widget to upload an image file
