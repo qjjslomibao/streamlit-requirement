@@ -117,7 +117,7 @@ if uploaded_file is not None:
         predicted_class_label = class_labels[predicted_class_index]
 
         # Display the result with white text on a blue background
-        st.markdown(f'The model predicts: <span class="big-font result-text">{predicted_class_label}</span> with confidence <span class="big-font result-text">{predictions[0][predicted_class_index] * 100:.2f}%</span>', unsafe_allow_html=True)
+        st.markdown(f'The model predicts: <span class="big-font result-text">{predicted_class_label}</span>', unsafe_allow_html=True)
 
 # Link to open the app in Colab
 colab_link = "<a href=\"https://colab.research.google.com/github/qjjslomibao/streamlit-requirement/blob/main/final_requirement_streamlit.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
