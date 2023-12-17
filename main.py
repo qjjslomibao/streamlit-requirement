@@ -17,13 +17,21 @@ st.markdown(
     """
     <style>
         .big-font {
-            font-size: 36px !important;
+            font-size: 24px !important;
             color: #3498db !important;
         }
     </style>
     """,
     unsafe_allow_html=True
 )
+
+# Names to display
+names = ["Lomibao, Justin Joshua", "Genabe, John Richmond", "Carl Voltair", "Lance Macamus", "Jimenez, Maw"]
+
+# Display names
+st.markdown('<p class="big-font">Names:</p>', unsafe_allow_html=True)
+for name in names:
+    st.markdown(f'<p class="big-font">{name}</p>', unsafe_allow_html=True)
 
 # File uploader widget to upload an image file
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
@@ -58,17 +66,6 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
 
     # Add a header with a custom font and color
-    st.markdown(
-        """
-        <style>
-            .big-font {
-                font-size: 24px !important;
-                color: #3498db !important;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     st.markdown('<p class="big-font">Uploaded Image</p>', unsafe_allow_html=True)
 
     # Display the image
