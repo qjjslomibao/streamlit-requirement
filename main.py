@@ -1,8 +1,8 @@
-# Importing necessary libraries
 import streamlit as st
 from PIL import Image
 import numpy as np
 import tensorflow as tf
+import subprocess
 
 # Title of the Streamlit app
 st.title("Streamlit App with Image Classification")
@@ -63,4 +63,5 @@ colab_link = "<a href=\"https://colab.research.google.com/github/qjjslomibao/str
 st.markdown(colab_link, unsafe_allow_html=True)
 
 # Run Streamlit app in the background
-!nohup streamlit run /usr/local/lib/python3.10/dist-packages/colab_kernel_launcher.py &
+streamlit_command = "streamlit run /usr/local/lib/python3.10/dist-packages/colab_kernel_launcher.py"
+subprocess.Popen(streamlit_command, shell=True)
