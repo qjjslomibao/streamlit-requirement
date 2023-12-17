@@ -109,6 +109,9 @@ if uploaded_file is not None:
         # Display the classification results with a blue background
         st.markdown('<div class="result"><p class="big-font result-text">Prediction Results</p></div>', unsafe_allow_html=True)
 
+        # Print raw predictions for debugging
+        st.write("Raw Predictions:", predictions)
+
         # Extracting class labels
         class_labels = ["Sad", "Happy"]
 
