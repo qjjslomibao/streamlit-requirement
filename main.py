@@ -35,6 +35,9 @@ st.markdown(
         .result-text {
             color: #ffffff !important;
         }
+        .white-text {
+            color: #ffffff !important;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -43,10 +46,10 @@ st.markdown(
 # Names to display
 names = ["Lomibao, Justin Joshua", "Genabe, John Richmond", "Carl Voltair", "Lance Macamus", "Jimenez, Maw"]
 
-# Display names with a blue background
-st.markdown('<div class="highlight"><p class="big-font">Names:</p></div>', unsafe_allow_html=True)
+# Display names with a blue background and white text
+st.markdown('<div class="highlight"><p class="big-font white-text">Names:</p></div>', unsafe_allow_html=True)
 for name in names:
-    st.markdown(f'<p class="big-font">{name}</p>', unsafe_allow_html=True)
+    st.markdown(f'<p class="big-font white-text">{name}</p>', unsafe_allow_html=True)
 
 # File uploader widget to upload an image file
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
@@ -80,8 +83,8 @@ def classify_image(image):
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
 
-    # Add a header with a blue background
-    st.markdown('<div class="highlight"><p class="big-font">Uploaded Image</p></div>', unsafe_allow_html=True)
+    # Add a header with a blue background and white text
+    st.markdown('<div class="highlight"><p class="big-font white-text">Uploaded Image</p></div>', unsafe_allow_html=True)
 
     # Display the image
     st.image(image, use_column_width=True)
