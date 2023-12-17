@@ -16,6 +16,11 @@ def classify_image(image):
         # Load the trained model (replace with your own model)
         model = tf.keras.models.load_model("best_model.h5")
 
+        # Manually apply weight decay to the model's trainable variables
+        for var in model.trainable_variables:
+            if "kernel" in var.name:
+                model.add_loss(0.0001 * tf.reduce_sum(tf.square(var)))
+
         # Preprocess the image
         img_array = np.array(image)
         img_array = tf.image.resize(img_array, (224, 224))  # Resize the image to match model's expected sizing
