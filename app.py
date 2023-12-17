@@ -13,7 +13,7 @@ uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 # Function to perform image classification using TensorFlow
 def classify_image(image):
     # Load the trained model (replace with your own model)
-    model = tf.keras.models.load_model("your_model_path")
+    model = tf.keras.models.load_model("best_model.h5")
 
     # Preprocess the image
     img_array = np.array(image)
