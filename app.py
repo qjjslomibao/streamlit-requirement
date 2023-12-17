@@ -12,35 +12,19 @@ uploaded_file = st.file_uploader("Choose an image...", type="jpg")
 
 # Function to perform image classification using TensorFlow
 def classify_image(image):
-    try:
-        # Load the trained model (replace with your own model)
-        model = tf.keras.models.load_model("best_model.h5")
+    # Load the trained model (replace with your own model)
+    model = tf.keras.models.load_model("best_model.h5")
 
-        # Create an optimizer with weight decay
-        optimizer = tf.optimizers.Adam(learning_rate=0.001)
+    # Preprocess the image
+    img_array = np.array(image)
+    img_array = tf.image.resize(img_array, (224, 224))  # Resize the image to match model's expected sizing
+    img_array = tf.expand_dims(img_array, 0)  # Add a batch dimension
+    img_array = img_array / 255.0  # Normalize the input image
 
-        # Manually apply weight decay to the optimizer's variables
-        for var in model.trainable_variables:
-            if "kernel" in var.name:
-                optimizer.add_weight_decay(0.0001, var)
+    # Make predictions
+    predictions = model.predict(img_array)
 
-        # Compile the model with the custom optimizer
-        model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-
-        # Preprocess the image
-        img_array = np.array(image)
-        img_array = tf.image.resize(img_array, (224, 224))  # Resize the image to match model's expected sizing
-        img_array = tf.expand_dims(img_array, 0)  # Add a batch dimension
-        img_array = img_array / 255.0  # Normalize the input image
-
-        # Make predictions
-        predictions = model.predict(img_array)
-
-        return predictions
-
-    except Exception as e:
-        st.error(f"Error during image classification: {e}")
-        return None
+    return predictions
 
 # Display the uploaded image and perform classification
 if uploaded_file is not None:
@@ -52,11 +36,10 @@ if uploaded_file is not None:
     # Call the classification function
     predictions = classify_image(image)
 
-    if predictions is not None:
-        # Display the classification results
-        st.write("Prediction Results:")
-        for i, pred in enumerate(predictions[0]):
-            st.write(f"Class {i}: {pred * 100:.2f}% confidence")
+    # Display the classification results
+    st.write("Prediction Results:")
+    for i, pred in enumerate(predictions[0]):
+        st.write(f"Class {i}: {pred * 100:.2f}% confidence")
 
 # Link to open the app in Colab
 colab_link = "<a href=\"https://colab.research.google.com/github/qjjslomibao/streamlit-requirement/blob/main/final_requirement_streamlit.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
