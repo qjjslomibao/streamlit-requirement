@@ -20,6 +20,11 @@ st.markdown(
             font-size: 24px !important;
             color: #3498db !important;
         }
+        .highlight {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 10px;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -28,8 +33,8 @@ st.markdown(
 # Names to display
 names = ["Lomibao, Justin Joshua", "Genabe, John Richmond", "Carl Voltair", "Lance Macamus", "Jimenez, Maw"]
 
-# Display names
-st.markdown('<p class="big-font">Names:</p>', unsafe_allow_html=True)
+# Display names with a highlight
+st.markdown('<div class="highlight"><p class="big-font">Names:</p></div>', unsafe_allow_html=True)
 for name in names:
     st.markdown(f'<p class="big-font">{name}</p>', unsafe_allow_html=True)
 
@@ -66,7 +71,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
 
     # Add a header with a custom font and color
-    st.markdown('<p class="big-font">Uploaded Image</p>', unsafe_allow_html=True)
+    st.markdown('<div class="highlight"><p class="big-font">Uploaded Image</p></div>', unsafe_allow_html=True)
 
     # Display the image
     st.image(image, use_column_width=True)
@@ -76,7 +81,7 @@ if uploaded_file is not None:
 
     if predictions is not None:
         # Display the classification results
-        st.markdown('<p class="big-font">Prediction Results</p>', unsafe_allow_html=True)
+        st.markdown('<div class="highlight"><p class="big-font">Prediction Results</p></div>', unsafe_allow_html=True)
 
         # Extracting class labels
         class_labels = ["Sad", "Happy"]
@@ -85,8 +90,8 @@ if uploaded_file is not None:
         predicted_class_index = np.argmax(predictions[0])
         predicted_class_label = class_labels[predicted_class_index]
 
-        # Display the result
-        st.write(f"The model predicts: {predicted_class_label} with confidence {predictions[0][predicted_class_index] * 100:.2f}%")
+        # Display the result with a highlight
+        st.markdown(f'The model predicts: <span class="big-font">{predicted_class_label}</span> with confidence <span class="big-font">{predictions[0][predicted_class_index] * 100:.2f}%</span>', unsafe_allow_html=True)
 
 # Link to open the app in Colab
 colab_link = "<a href=\"https://colab.research.google.com/github/qjjslomibao/streamlit-requirement/blob/main/final_requirement_streamlit.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
