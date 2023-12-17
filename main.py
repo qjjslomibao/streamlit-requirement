@@ -16,13 +16,13 @@ def classify_image(image):
         # Load the trained model (replace with your own model)
         model = tf.keras.models.load_model("best_model.h5")
 
-        # Compile the model with weight decay (L2 regularization)
+        # Compile the model
         optimizer = tf.optimizers.Adam(learning_rate=0.001)
         model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 
         # Preprocess the image
         img_array = np.array(image)
-        img_array = tf.image.resize(img_array, (224, 224))  # Resize the image to match model's expected sizing
+        img_array = tf.image.resize(img_array, (64, 64))  # Resize the image to match model's expected input size
         img_array = tf.expand_dims(img_array, 0)  # Add a batch dimension
         img_array = img_array / 255.0  # Normalize the input image
 
