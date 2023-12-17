@@ -3,6 +3,7 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import tensorflow as tf
+from tensorflow_addons.optimizers import AdamW
 
 # Title of the Streamlit app
 st.title("Streamlit App with Image Classification")
@@ -16,10 +17,11 @@ def classify_image(image):
         # Load the trained model (replace with your own model)
         model = tf.keras.models.load_model("best_model.h5")
 
-        # Manually apply weight decay to the model's trainable variables
-        for var in model.trainable_variables:
-            if "kernel" in var.name:
-                model.add_loss(0.0001 * tf.reduce_sum(tf.square(var)))
+        # Use AdamW optimizer with weight decay
+        optimizer = AdamW(learning_rate=0.001, weight_decay=0.0001)
+
+        # Compile the model with the custom optimizer
+        model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 
         # Preprocess the image
         img_array = np.array(image)
