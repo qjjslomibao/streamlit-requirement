@@ -4,8 +4,26 @@ import numpy as np
 import tensorflow as tf
 import subprocess
 
-# Title of the Streamlit app
-st.title("Streamlit App with Image Classification")
+# Set page layout
+st.set_page_config(
+    page_title="Happy or Sad Classification",
+    page_icon=":smiley:",
+    layout="wide"
+)
+
+# Add a title with a custom font and color
+st.title("Happy or Sad Classification")
+st.markdown(
+    """
+    <style>
+        .big-font {
+            font-size: 36px !important;
+            color: #3498db !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # File uploader widget to upload an image file
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
@@ -38,20 +56,34 @@ def classify_image(image):
 # Display the uploaded image and perform classification
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
-    st.write("")
-    st.write("Classifying...")
+
+    # Add a header with a custom font and color
+    st.markdown(
+        """
+        <style>
+            .big-font {
+                font-size: 24px !important;
+                color: #3498db !important;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    st.markdown('<p class="big-font">Uploaded Image</p>', unsafe_allow_html=True)
+
+    # Display the image
+    st.image(image, use_column_width=True)
 
     # Call the classification function
     predictions = classify_image(image)
 
     if predictions is not None:
         # Display the classification results
-        st.write("Prediction Results:")
-        
+        st.markdown('<p class="big-font">Prediction Results</p>', unsafe_allow_html=True)
+
         # Extracting class labels
         class_labels = ["Sad", "Happy"]
-        
+
         # Finding the predicted class
         predicted_class_index = np.argmax(predictions[0])
         predicted_class_label = class_labels[predicted_class_index]
