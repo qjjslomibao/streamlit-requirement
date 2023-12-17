@@ -21,9 +21,19 @@ st.markdown(
             color: #3498db !important;
         }
         .highlight {
-            background-color: #ecf0f1;
+            background-color: #3498db;
             padding: 10px;
             border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .result {
+            background-color: #3498db;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .result-text {
+            color: #ffffff !important;
         }
     </style>
     """,
@@ -33,7 +43,7 @@ st.markdown(
 # Names to display
 names = ["Lomibao, Justin Joshua", "Genabe, John Richmond", "Carl Voltair", "Lance Macamus", "Jimenez, Maw"]
 
-# Display names with a highlight
+# Display names with a blue background
 st.markdown('<div class="highlight"><p class="big-font">Names:</p></div>', unsafe_allow_html=True)
 for name in names:
     st.markdown(f'<p class="big-font">{name}</p>', unsafe_allow_html=True)
@@ -70,7 +80,7 @@ def classify_image(image):
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
 
-    # Add a header with a custom font and color
+    # Add a header with a blue background
     st.markdown('<div class="highlight"><p class="big-font">Uploaded Image</p></div>', unsafe_allow_html=True)
 
     # Display the image
@@ -80,8 +90,8 @@ if uploaded_file is not None:
     predictions = classify_image(image)
 
     if predictions is not None:
-        # Display the classification results
-        st.markdown('<div class="highlight"><p class="big-font">Prediction Results</p></div>', unsafe_allow_html=True)
+        # Display the classification results with a blue background
+        st.markdown('<div class="result"><p class="big-font result-text">Prediction Results</p></div>', unsafe_allow_html=True)
 
         # Extracting class labels
         class_labels = ["Sad", "Happy"]
@@ -90,8 +100,8 @@ if uploaded_file is not None:
         predicted_class_index = np.argmax(predictions[0])
         predicted_class_label = class_labels[predicted_class_index]
 
-        # Display the result with a highlight
-        st.markdown(f'The model predicts: <span class="big-font">{predicted_class_label}</span> with confidence <span class="big-font">{predictions[0][predicted_class_index] * 100:.2f}%</span>', unsafe_allow_html=True)
+        # Display the result with white text on a blue background
+        st.markdown(f'The model predicts: <span class="big-font result-text">{predicted_class_label}</span> with confidence <span class="big-font result-text">{predictions[0][predicted_class_index] * 100:.2f}%</span>', unsafe_allow_html=True)
 
 # Link to open the app in Colab
 colab_link = "<a href=\"https://colab.research.google.com/github/qjjslomibao/streamlit-requirement/blob/main/final_requirement_streamlit.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
