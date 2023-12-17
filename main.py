@@ -4,33 +4,38 @@ import numpy as np
 import tensorflow as tf
 import subprocess
 
-# Set page layout
+# Set page layout and theme
 st.set_page_config(
     page_title="Happy or Sad Classification",
     page_icon=":smiley:",
     layout="wide"
 )
+st.set_theme("dark")
 
-# Add a title with a custom font and color
-st.title("Happy or Sad Classification")
+# Add custom styles
 st.markdown(
     """
     <style>
+        body {
+            background-image: url('your_background_image_url');
+            background-size: cover;
+        }
         .big-font {
+            font-family: 'Your Custom Font', sans-serif;
             font-size: 24px !important;
             color: #3498db !important;
         }
         .highlight {
             background-color: #3498db;
-            padding: 10px;
+            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .result {
             background-color: #3498db;
-            padding: 10px;
+            padding: 20px;
             border-radius: 10px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .result-text {
             color: #ffffff !important;
@@ -38,21 +43,16 @@ st.markdown(
         .white-text {
             color: #ffffff !important;
         }
-        .footer-text {
-            color: #ffffff !important;
-            font-style: italic;
-        }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Text to display
-made_by_text = "This was made by:"
-submitted_to_text = "Submitted to Dr. Jonathan Taylar."
+# Header
+st.title("Happy or Sad Classification :smiley:")
 
 # Display "This was made by:" with a blue background and white text
-st.markdown(f'<div class="highlight"><p class="big-font white-text">{made_by_text}</p></div>', unsafe_allow_html=True)
+st.markdown('<div class="highlight"><p class="big-font white-text">This was made by:</p></div>', unsafe_allow_html=True)
 
 # Names to display
 names = ["Lomibao, Justin Joshua", "Genabe, John Richmond", "Carl Voltair", "Lance Macamus", "Jimenez, Maw"]
@@ -62,7 +62,7 @@ for name in names:
     st.markdown(f'<p class="big-font white-text">{name}</p>', unsafe_allow_html=True)
 
 # Display "Submitted to Dr. Jonathan Taylar." with a blue background and white text
-st.markdown(f'<p class="big-font white-text">{submitted_to_text}</p>', unsafe_allow_html=True)
+st.markdown('<div class="highlight"><p class="big-font white-text">Submitted to Dr. Jonathan Taylar.</p></div>', unsafe_allow_html=True)
 
 # File uploader widget to upload an image file
 uploaded_file = st.file_uploader("Choose an image...", type="jpg")
