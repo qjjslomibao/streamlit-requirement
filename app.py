@@ -17,7 +17,12 @@ def classify_image(image):
         model = tf.keras.models.load_model("best_model.h5")
 
         # Create an optimizer with weight decay
-        optimizer = tf.keras.optimizers.Adam(learning_rate=0.001, decay=1e-4)
+        optimizer = tf.optimizers.Adam(learning_rate=0.001)
+
+        # Manually apply weight decay to the optimizer's variables
+        for var in model.trainable_variables:
+            if "kernel" in var.name:
+                optimizer.add_weight_decay(0.0001, var)
 
         # Compile the model with the custom optimizer
         model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
